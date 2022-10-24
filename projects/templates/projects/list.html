@@ -10,16 +10,14 @@
     <header>
       <nav>
         <ul>
-          <li><a href="{% url 'home' %}">Main page</a></li>
+          <li><a href="{% url 'list_projects' %}">Main page</a></li>
         </ul>
       </nav>
     </header>
     <main>
       <div>
         <h1>My Projects</h1>
-        {% if not list_projects %}
-        <p>You are not assigned to any projects</p>
-        {% else %}
+        {% if projects %}
         <table>
           <thead>
             <tr>
@@ -28,14 +26,18 @@
             </tr>
           </thead>
           <tbody>
-            {% for project in list_projects.all %}
+            {% for project in projects.all %}
             <tr>
               <td>{{ project.name }}</td>
-              <td>{{ project.description }}</td>
+              {% comment %}
+              <td>{{ project.list_projects.all|length }}</td>
+              {% endcomment %}
             </tr>
             {% endfor %}
           </tbody>
         </table>
+        {% else %}
+        <p>You are not assigned to any projects</p>
         {% endif %}
       </div>
     </main>
