@@ -8,34 +8,39 @@
   </head>
   <body>
     <header>
-      <nav>
-        <ul>
-          <li><a href="{% url 'list_projects' %}">Main page</a></li>
-        </ul>
-      </nav>
+      <nav></nav>
     </header>
     <main>
       <div>
-        <h1>My Projects</h1>
+        <h1>{{ project_object.title }}</h1>
+        <p>{{ project.object.description }}</p>
+        <p></p>
+        <h2>Tasks</h2>
         {% if projects %}
         <table>
           <thead>
             <tr>
               <th>Name</th>
-              <th>Number of Tasks</th>
+              <th>Assignee</th>
+              <th>Start Date</th>
+              <th>Due Date</th>
+              <th>Is completed</th>
             </tr>
           </thead>
           <tbody>
-            {% for project in projects.all %}
+            {% for task in projects_object.tasks.all %}
             <tr>
-              <td>{{ project.name }}</td>
-              <td>{{ project.tasks.all|length }}</td>
+              <td>{{ name.name }}</td>
+              <td>{{ name.assignee }}</td>
+              <td>{{ name.start_date|date:"n/j/y" }}</td>
+              <td>{{ name.due_date|date:"n/j/y" }}</td>
+              <td>{{ name.is_completed|yesno }}</td>
             </tr>
             {% endfor %}
           </tbody>
         </table>
         {% else %}
-        <p>You are not assigned to any projects</p>
+        <p>This project has no tasks</p>
         {% endif %}
       </div>
     </main>
