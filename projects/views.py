@@ -17,6 +17,6 @@ def project_list(request):
 def show_project(request, id):
     project = get_object_or_404(Project, id=id)
     context = {
-        "project": project,
+        "project_object": project,
     }
     return render(request, "projects/detail.html", context)

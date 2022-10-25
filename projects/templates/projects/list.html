@@ -11,6 +11,10 @@
       <nav>
         <ul>
           <li><a href="{% url 'list_projects' %}">Main page</a></li>
+          {% if user.is_authenticated %} Hello, {{ user.username }} {% else %}
+          <a href="{% url 'signup' %}">Signup</a>
+          <a href="{% url 'login' %}">Login</a>
+          {% endif %}
         </ul>
       </nav>
     </header>
@@ -28,7 +32,11 @@
           <tbody>
             {% for project in projects.all %}
             <tr>
-              <td>{{ project.name }}</td>
+              <td>
+                <a href="{% url 'show_project' project.id %}"
+                  >{{ project.name }}</a
+                >
+              </td>
               <td>{{ project.tasks.all|length }}</td>
             </tr>
             {% endfor %}

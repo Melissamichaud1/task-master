@@ -4,37 +4,39 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Task</title>
   </head>
   <body>
     <header>
-      <nav></nav>
+      <nav>
+        <a href="{% url 'list_projects' %}">Main page</a>
+      </nav>
     </header>
     <main>
       <div>
-        <h1>{{ project_object.title }}</h1>
-        <p>{{ project.object.description }}</p>
         <p></p>
+        <h1>{{ project_object.name }}</h1>
+        <p>{{ project_object.description}}</p>
         <h2>Tasks</h2>
-        {% if projects %}
+        {% if project_object.tasks.all %}
         <table>
           <thead>
             <tr>
               <th>Name</th>
               <th>Assignee</th>
-              <th>Start Date</th>
-              <th>Due Date</th>
+              <th>Start date</th>
+              <th>Due date</th>
               <th>Is completed</th>
             </tr>
           </thead>
           <tbody>
-            {% for task in projects_object.tasks.all %}
+            {% for tasks in project_object.tasks.all %}
             <tr>
-              <td>{{ name.name }}</td>
-              <td>{{ name.assignee }}</td>
-              <td>{{ name.start_date|date:"n/j/y" }}</td>
-              <td>{{ name.due_date|date:"n/j/y" }}</td>
-              <td>{{ name.is_completed|yesno }}</td>
+              <td>{{ tasks.name }}</td>
+              <td>{{ tasks.assignee }}</td>
+              <td>{{ tasks.start_date|date:"M. d, Y, G:H a" }}</td>
+              <td>{{ tasks.due_date|date:"M. d, Y, G:H a" }}</td>
+              <td>{{ tasks.is_completed|yesno }}</td>
             </tr>
             {% endfor %}
           </tbody>
