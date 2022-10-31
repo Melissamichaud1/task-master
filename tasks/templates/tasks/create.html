@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Task</title>
-    </head>
-    <body>
+{% extends 'base.html' %}
+{% block title %}
+Task
+{% endblock title %}
+{% block content %}
         <header>
             <nav>
                 <ul>
@@ -34,6 +30,7 @@
         </header>
         <main>
             <div>
+                <div class="task-form">
                 <h1>Create a new task</h1>
                 <form method="post">
                     {% csrf_token %} {{ form.as_p }}
@@ -41,5 +38,4 @@
                 </form>
             </div>
         </main>
-    </body>
-</html>
+{% endblock content %}
